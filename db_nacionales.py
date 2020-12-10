@@ -25,12 +25,6 @@ festividades_alta= {
 def obtener_temporada(ciudad):
     # Haga lo que tenga que hacer para conectarse a la base de datos y obtener todas las ordenes
     lista_festividades = []
-<<<<<<< HEAD
-    for e in Festividades_alta:
-        
-        list 
-=======
     for e in festividades_alta:
        list
     return lista_festividades
->>>>>>> 327633ed3ac480275336772ef9434ce6014ebd8b
