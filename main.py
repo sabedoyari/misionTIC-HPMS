@@ -1,8 +1,8 @@
 from fastapi import FastAPI, HTTPException
-import db
+import db_general
+import db_nacionales
 
 app = FastAPI()
-
 
 @app.get("/Temporada/")
 async def obtener_Temporada():
