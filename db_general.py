@@ -2,6 +2,7 @@ from pydantic import BaseModel
 
 
 # Este es un cambio
+# Y este será otro cambio
 
 class Temporada(BaseModel):
     fecha_inicio: str
