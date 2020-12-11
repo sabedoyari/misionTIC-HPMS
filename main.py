@@ -5,6 +5,9 @@ import db_nacionales
 
 app = FastAPI()
 
+@app.get("/")
+async def root():
+    return {"Mensaje": "Bienvenido - HOTEL PRICE SYSTEM MANAGEMENT Api"}
 
 @app.get("/Temporada/")
 async def obtener_temporada():
