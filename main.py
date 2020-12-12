@@ -20,7 +20,6 @@ async def obtener_temporada(ciudad: Optional[str] = None):
         Temporada = db_nacionales.db_temporada_alta
     return  Temporada
 
-
 @app.post("/Temporada/crear/")
 async def crear_temporada(temporada: db_nacionales.temporada):
     creada_exitosamente = db_nacionales.crear_temporada(temporada)
