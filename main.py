@@ -25,12 +25,12 @@ async def obtener_temporada(ciudad: Optional[str] = None):
 
 @app.get("/Temporada/ciudadfecha/")
 async def obtener_temporada_ciudad_fecha(ciudad: Optional[str] = None, fecha: Optional[str] = None):
-    fecha = mktime(datetime.strptime(fecha, "%d/%m/%Y").timetuple())
+    fecha = mktime(datetime.strptime(fecha, "%d-%m-%Y").timetuple())
     if ciudad:
         Temporada = []
         if ciudad in db_nacionales.db_temporada_alta:
-            fecha_inicio = mktime(datetime.strptime(db_nacionales.db_temporada_alta[ciudad].fecha_inicio, "%d/%m/%Y").timetuple())
-            fecha_fin = mktime(datetime.strptime(db_nacionales.db_temporada_alta[ciudad].fecha_inicio, "%d/%m/%Y").timetuple())
+            fecha_inicio = mktime(datetime.strptime(db_nacionales.db_temporada_alta[ciudad].fecha_inicio, "%d-%m-%Y").timetuple())
+            fecha_fin = mktime(datetime.strptime(db_nacionales.db_temporada_alta[ciudad].fecha_inicio, "%d-%m-%Y").timetuple())
             if fecha >= fecha_inicio and fecha <= fecha_fin:
                 Temporada.append(db_nacionales.db_temporada_alta[ciudad])
             else: 
