@@ -15,6 +15,7 @@ class temporada(BaseModel):
 
 db_temporada_alta = Dict[str, temporada]
 
+
 db_temporada_alta = {
     'Cartagena': temporada(**{'ciudad': 'Cartagena',
                               'fecha_inicio': '04-01-2021',
