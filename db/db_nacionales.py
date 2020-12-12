@@ -22,7 +22,7 @@ db_temporada_alta = {
                               'fecha_fin': '12-01-2021',
                               'fiesta': 'Festival Internacional de Música'
                                                 }),
-    'Pasto': temporada(**{'ciudad': 'Pasto',
+    'Pasto': temporada(**{'ciudad': 'Pasto, Nariño',
                               'fecha_inicio': '04-01-2021',
                               'fecha_fin': '12-01-2021',
                               'fiesta': 'Carnaval de Negros y Blancos'
