@@ -18,38 +18,38 @@ db_temporada_alta = Dict[str, temporada]
 
 db_temporada_alta = {
     'Cartagena': temporada(**{'ciudad': 'Cartagena',
-                              'fecha_inicio': '04-01-2021',
-                              'fecha_fin': '12-01-2021',
+                              'fecha_inicio': '2021-01-04',
+                              'fecha_fin': '2021-01-07',
                               'fiesta': 'Festival Internacional de Música'
                                                 }),
     'Pasto': temporada(**{'ciudad': 'Pasto, Nariño',
-                              'fecha_inicio': '04-01-2021',
-                              'fecha_fin': '12-01-2021',
+                              'fecha_inicio': '2021-01-04',
+                              'fecha_fin': '2021-01-12',
                               'fiesta': 'Carnaval de Negros y Blancos'
                                                 }),
     'Manizales': temporada(**{'ciudad': 'Manizales',
-                              'fecha_inicio': '04-01-2021',
-                              'fecha_fin': '12-01-2021',
+                              'fecha_inicio': '2021-01-04',
+                              'fecha_fin': '2021-01-12',
                               'fiesta': 'Feria de Manizales'
                                                 }),      
     'Cartagena': temporada(**{'ciudad': 'Cartagena',
-                              'fecha_inicio': '30-01-2021',
-                              'fecha_fin': '02-02-2021',
+                              'fecha_inicio': '2021-01-30',
+                              'fecha_fin': '2021-02-02',
                               'fiesta': 'Hay Festival'
                                                 }),
     'Cartagena': temporada(**{'ciudad': 'Cartagena',
-                              'fecha_inicio': '30-01-2021',
-                              'fecha_fin': '02-02-2021',
+                              'fecha_inicio': '2021-01-30',
+                              'fecha_fin': '2021-02-02',
                               'fiesta': 'Fiesta de la Candelaria'
                                                 }),
     'Boyacá': temporada(**{'ciudad': 'Boyacá',
-                              'fecha_inicio': '31-01-2021',
-                              'fecha_fin': '02-02-2021',
+                              'fecha_inicio': '2021-01-31',
+                              'fecha_fin': '2021-02-02',
                               'fiesta': 'Fiestas de la Candelaria'
                                                 }),
     'Tumaco': temporada(**{'ciudad': 'Tumaco',
-                              'fecha_inicio': '20-02-2021',
-                              'fecha_fin': '25-02-2021',
+                              'fecha_inicio': '2021-02-20',
+                              'fecha_fin': '2021-02-25',
                               'fiesta': 'Carnaval del Fuego'
                                                 }),                                                                                                                                                
 }
