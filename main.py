@@ -1,11 +1,26 @@
 from typing import Optional
 from fastapi import FastAPI, HTTPException
 from db import db_nacionales, db_general
+from fastapi.middleware.cors import CORSMiddleware
 
 from time import mktime
-from datetime import datetime 
+from datetime import datetime
 
 app = FastAPI()
+
+origins = [
+    "https://santi-hpsm.herokuapp.com/",
+    "http://localhost",
+    "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def root():
