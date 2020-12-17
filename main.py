@@ -20,9 +20,7 @@ app.add_middleware(
 
 app.include_router(temporadas.router)
 app.include_router(hoteles.router)
-app.include_router(usuarios.router)
 
 @app.get("/", tags = ["Principal"])
 async def root():
     return {"Mensaje": "Bienvenido - HOTEL PRICE SYSTEM MANAGEMENT Api"}
-

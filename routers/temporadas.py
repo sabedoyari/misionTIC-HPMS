@@ -7,10 +7,11 @@ from time import mktime
 from datetime import datetime
 
 router = APIRouter(
-    tags = ["Temporadas"]
+    tags = ["Temporadas"],
+    prefix = "/Temporada"
 )
 
-@router.get("/Temporada/")
+@router.get("/")
 async def obtener_temporada(ciudad: Optional[str] = None):
 
     """
@@ -26,14 +27,14 @@ async def obtener_temporada(ciudad: Optional[str] = None):
     if ciudad:
         Temporada = []
         if ciudad in db_nacionales.db_temporada_alta:
-            Temporada.routerend(db_nacionales.db_temporada_alta[ciudad]) 
+            Temporada.append(db_nacionales.db_temporada_alta[ciudad]) 
         else:
             Temporada = {'Message: En la ciudad especificada no contamos con sucursal'}
     else:
         Temporada = db_nacionales.db_temporada_alta
     return  Temporada
 
-@router.get("/Temporada/ciudadfecha/")
+@router.get("/ciudadfecha/")
 async def obtener_temporada_ciudad_fecha(ciudad: Optional[str] = None, fecha: Optional[str] = None):
     fecha = mktime(datetime.strptime(fecha, "%Y-%m-%d").timetuple())
     if ciudad:
@@ -42,7 +43,7 @@ async def obtener_temporada_ciudad_fecha(ciudad: Optional[str] = None, fecha: Op
             fecha_inicio = mktime(datetime.strptime(db_nacionales.db_temporada_alta[ciudad].fecha_inicio, "%Y-%m-%d").timetuple())
             fecha_fin = mktime(datetime.strptime(db_nacionales.db_temporada_alta[ciudad].fecha_fin, "%Y-%m-%d").timetuple())
             if fecha >= fecha_inicio and fecha <= fecha_fin:
-                Temporada.routerend(db_nacionales.db_temporada_alta[ciudad])
+                Temporada.append(db_nacionales.db_temporada_alta[ciudad])
             else: 
                 Temporada = {'Message': 'Por la época especificada, la ciudad no se encuentra en temporada alta'}
         else:
@@ -51,7 +52,7 @@ async def obtener_temporada_ciudad_fecha(ciudad: Optional[str] = None, fecha: Op
         Temporada = db_nacionales.db_temporada_alta
     return  Temporada
 
-@router.post("/Temporada/crear/")
+@router.post("/crear/")
 async def crear_temporada(temporada: db_nacionales.temporada):
     creada_exitosamente = db_nacionales.crear_temporada(temporada)
     if creada_exitosamente:
@@ -60,7 +61,7 @@ async def crear_temporada(temporada: db_nacionales.temporada):
         raise HTTPException(status_code = 400,
                             detail="Evento ya existe")
 
-@router.get("/Temporada/General")
-async def obtener_FiestaG():
+@router.get("/General")
+async def obtener_temporada_general():
     TemporadaGeneral = db_general.obtener_temporada_general()
     return  TemporadaGeneral
