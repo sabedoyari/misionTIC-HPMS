@@ -6,24 +6,23 @@ from fastapi.middleware.cors import CORSMiddleware
 from time import mktime
 from datetime import datetime
 
-router = APIRouter
-
-origins = [
-    "https://santi-hpsm.herokuapp.com/",
-    "http://localhost",
-    "http://localhost:8080",
-]
-
-router.add_middleware(
-    CORSMiddleware,
-    allow_origins = origins,
-    allow_credentials = True,
-    allow_methods = ["*"],
-    allow_headers = ["*"]
+router = APIRouter(
+    tags = ["Temporadas"]
 )
 
 @router.get("/Temporada/")
 async def obtener_temporada(ciudad: Optional[str] = None):
+
+    """
+    Buscar las temporadas registradas asociadas a las fiestas nacionales.
+
+    Al enviar el parámetro ciudad, buscará si en la ciudad especificada
+    el hotel cuenta con sucursales.
+    
+    Si no se envía el parámetro, se devuelve el
+    listado completo.
+    """
+
     if ciudad:
         Temporada = []
         if ciudad in db_nacionales.db_temporada_alta:
