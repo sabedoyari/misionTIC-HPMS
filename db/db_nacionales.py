@@ -1,12 +1,6 @@
 from pydantic import BaseModel
 from typing import Dict
 
-from time import mktime
-from datetime import datetime 
-  
-string = "20/01/2020"
-print(mktime(datetime.strptime(string, "%d/%m/%Y").timetuple())) 
-
 class temporada(BaseModel):
     ciudad: str
     fecha_inicio: str
@@ -15,6 +9,29 @@ class temporada(BaseModel):
 
 db_temporada_alta = Dict[str, temporada]
 
+class hotel(BaseModel):
+    nombre_hotel: str
+    owner: str
+    gerente: str
+    sucursales: list
+
+class sucursal(BaseModel):
+    nombre_hotel: str
+    ciudad: str
+    num_hab: int
+    room_price: float
+    other_costs: float
+    utility: float
+    admin: str
+
+class usuarios(BaseModel):
+    nombre_hotel: str
+    name: str
+    email: str
+    password: str
+    id: int
+    cargo: str
+    
 
 db_temporada_alta = {
     'Cartagena': temporada(**{'ciudad': 'Cartagena',
