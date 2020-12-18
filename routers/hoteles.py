@@ -2,9 +2,6 @@ from typing import Optional
 from fastapi import APIRouter, HTTPException
 from db import db_hoteles
 
-from time import mktime
-from datetime import datetime
-
 router = APIRouter(
     tags = ["Hoteles"],
     prefix = "/Hoteles"
