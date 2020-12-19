@@ -53,7 +53,7 @@ async def crear_sucursal(sucursal: db_hoteles.sucursal):
         raise HTTPException(status_code = 400,
                             detail = "Debe especificar el nombre del hotel al que le añadirá la sucursal")    
     
-@router.get("Sucursales/Consultar")
+@router.get("/Sucursales/Consultar")
 async def consultar_sucursales(nombre_hotel: Optional[str] = None, ciudad: Optional[str] = None):
     
     if nombre_hotel or ciudad:
