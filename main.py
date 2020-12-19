@@ -5,7 +5,7 @@ from routers import temporadas, hoteles, usuarios
 app = FastAPI()
 
 origins = [
-    "https://santi-hpsm.herokuapp.com/",
+    "https://api-hotel-season.herokuapp.com/",
     "https://hotel-season.herokuapp.com/"
     "http://localhost",
     "http://localhost:8080",
