@@ -43,7 +43,7 @@ db_users = {
         'nombre_hotel': 'De Cameron',
         'name': 'Andrés',
         'email': 'andres@yopmail.com',
-        'nick': 'Andres'
+        'nick': 'Andres',
         'password': 'abc1234',
         'id': 123459,
         'cargo': 'Recepcionista'
