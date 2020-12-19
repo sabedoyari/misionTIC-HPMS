@@ -6,6 +6,7 @@ app = FastAPI()
 
 origins = [
     "https://santi-hpsm.herokuapp.com/",
+    "https://hotel-season.herokuapp.com/"
     "http://localhost",
     "http://localhost:8080",
 ]
