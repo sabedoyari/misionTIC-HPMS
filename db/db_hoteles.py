@@ -14,7 +14,13 @@ db_hoteles = {
         'nombre_hotel': 'De Cameron',
         'owner': 'Tania',
         'gerente': 'Tania',
-        'sucursales': ['Medellín', 'Cali', 'Cartagena']}),
+        'sucursales': [
+            'Medellín', 
+            'Cali', 
+            'Cartagena'
+            ]
+    }),
+
     'Dann Carlton': hotel(**{
         'nombre_hotel': 'Dann Carlton',
         'owner': 'Jairo',

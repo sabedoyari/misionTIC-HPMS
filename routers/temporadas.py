@@ -1,7 +1,6 @@
 from typing import Optional
 from fastapi import APIRouter, HTTPException
 from db import db_nacionales, db_general
-from fastapi.middleware.cors import CORSMiddleware
 
 from time import mktime
 from datetime import datetime
@@ -34,7 +33,7 @@ async def obtener_temporada(ciudad: Optional[str] = None):
         Temporada = db_nacionales.db_temporada_alta
     return  Temporada
 
-@router.get("/ciudadfecha/")
+@router.get("/CiudadFecha/")
 async def obtener_temporada_ciudad_fecha(ciudad: Optional[str] = None, fecha: Optional[str] = None):
     fecha = mktime(datetime.strptime(fecha, "%Y-%m-%d").timetuple())
     if ciudad:
@@ -52,7 +51,7 @@ async def obtener_temporada_ciudad_fecha(ciudad: Optional[str] = None, fecha: Op
         Temporada = db_nacionales.db_temporada_alta
     return  Temporada
 
-@router.post("/crear/")
+@router.post("/Crear/")
 async def crear_temporada(temporada: db_nacionales.temporada):
     creada_exitosamente = db_nacionales.crear_temporada(temporada)
     if creada_exitosamente:
