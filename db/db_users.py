@@ -6,10 +6,11 @@ class usuarios(BaseModel):
     name: str
     email: str
     password: str
+    nick: str
     id: int
     cargo: str
 
-db_users = dict[str, usuarios]
+db_users = Dict[str, usuarios]
 
 db_users = {
     'Tania': usuarios(**{
