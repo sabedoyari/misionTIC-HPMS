@@ -14,7 +14,7 @@ router = APIRouter(
 class response_mensaje(BaseModel):
     Mensaje: str
 
-@router.get("/", response_model = response_mensaje)
+@router.get("/")
 async def obtener_temporada(ciudad: Optional[str] = None):
 
     """
