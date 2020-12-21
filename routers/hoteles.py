@@ -10,7 +10,10 @@ router = APIRouter(
     prefix = "/Hoteles"
 )
 
-@router.get("/")
+class response_mensaje(BaseModel):
+    Mensaje: str
+
+@router.get("/", response_model = response_mensaje)
 async def obtener_hoteles(nombre_hotel: Optional[str] = None):
 
     if nombre_hotel:
@@ -18,13 +21,13 @@ async def obtener_hoteles(nombre_hotel: Optional[str] = None):
         if nombre_hotel in db_hoteles.db_hoteles.keys():
             hoteles.append(db_hoteles.db_hoteles[nombre_hotel])
         else:
-            hoteles = {'Message': 'El hotel especificado no está registrado en el aplicativo'}
+            hoteles = {'Mensaje': 'El hotel especificado no está registrado en el aplicativo'}
     else:
         hoteles = db_hoteles.db_hoteles
 
     return hoteles
 
-@router.post("/Crear")
+@router.post("/Crear", response_model = response_mensaje)
 async def crear_hotel(hotel: db_hoteles.hotel):
 
     if hotel.nombre_hotel in db_hoteles.db_hoteles:
@@ -32,11 +35,11 @@ async def crear_hotel(hotel: db_hoteles.hotel):
                             detail = "El hotel ya está creado")
     else:
         db_hoteles.db_hoteles[hotel.nombre_hotel] = hotel
-        return {'message': f'Se ha creado correctamente el hotel {hotel.nombre_hotel}'}
+        return {'Mensaje': f'Se ha creado correctamente el hotel {hotel.nombre_hotel}'}
 
 # Para sucursales se aplica el supuesto de que en temporada alta el precio es 150%, media 125% y baja 100%.
 
-@router.post("/Sucursales/Crear")
+@router.post("/Sucursales/Crear", response_model = response_mensaje)
 async def crear_sucursal(sucursal: db_hoteles.sucursal):
 
     if sucursal.nombre_hotel:
@@ -51,7 +54,7 @@ async def crear_sucursal(sucursal: db_hoteles.sucursal):
             db_hoteles.db_hoteles[sucursal.nombre_hotel].sucursales.append(sucursal.ciudad)
             price = (sucursal.other_costs/sucursal.num_hab + sucursal.room_costs) * (1 + sucursal.utility)
 
-            return {'Message': f'Se ha creado una sucursal en la ciudad de {sucursal.ciudad}'
+            return {'Mensaje': f'Se ha creado una sucursal en la ciudad de {sucursal.ciudad}'
                             f' para el hotel {sucursal.nombre_hotel}. '
                             f'El precio recomendable por habitación es: {price}'}
     else:
@@ -64,7 +67,7 @@ class consulta_sucursal(BaseModel):
     fecha_inicio: Optional[str] = None
     fecha_fin: Optional[str] = None
 
-@router.post("/Sucursales/Consultar")
+@router.post("/Sucursales/Consultar", response_model = response_mensaje)
 async def consultar_sucursales(consulta: consulta_sucursal):
     
     nombre_hotel = consulta.nombre_hotel
