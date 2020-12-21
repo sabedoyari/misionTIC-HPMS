@@ -25,12 +25,12 @@ async def obtener_temporada(ciudad: Optional[str] = None):
 
     if ciudad:
         Temporada = []
-        if ciudad in db_nacionales.db_temporada_alta:
-            Temporada.append(db_nacionales.db_temporada_alta[ciudad]) 
+        if ciudad in db_nacionales.db_temporada:
+            Temporada.append(db_nacionales.db_temporada[ciudad]) 
         else:
             Temporada = {'Message: En la ciudad especificada no contamos con sucursal'}
     else:
-        Temporada = db_nacionales.db_temporada_alta
+        Temporada = db_nacionales.db_temporada
     return  Temporada
 
 @router.get("/CiudadFecha/")
@@ -38,17 +38,17 @@ async def obtener_temporada_ciudad_fecha(ciudad: Optional[str] = None, fecha: Op
     fecha = mktime(datetime.strptime(fecha, "%Y-%m-%d").timetuple())
     if ciudad:
         Temporada = []
-        if ciudad in db_nacionales.db_temporada_alta:
-            fecha_inicio = mktime(datetime.strptime(db_nacionales.db_temporada_alta[ciudad].fecha_inicio, "%Y-%m-%d").timetuple())
-            fecha_fin = mktime(datetime.strptime(db_nacionales.db_temporada_alta[ciudad].fecha_fin, "%Y-%m-%d").timetuple())
+        if ciudad in db_nacionales.db_temporada:
+            fecha_inicio = mktime(datetime.strptime(db_nacionales.db_temporada[ciudad].fecha_inicio, "%Y-%m-%d").timetuple())
+            fecha_fin = mktime(datetime.strptime(db_nacionales.db_temporada[ciudad].fecha_fin, "%Y-%m-%d").timetuple())
             if fecha >= fecha_inicio and fecha <= fecha_fin:
-                Temporada.append(db_nacionales.db_temporada_alta[ciudad])
+                Temporada.append(db_nacionales.db_temporada[ciudad])
             else: 
                 Temporada = {'Message': 'Por la época especificada, la ciudad no se encuentra en temporada alta'}
         else:
-            Temporada = {'Message': 'En la ciudad especificada no contamos con sucursal'}
+            Temporada = {'Message': 'En la ciudad especificada no se ha registrado una sucursal.'}
     else:
-        Temporada = db_nacionales.db_temporada_alta
+        Temporada = db_nacionales.db_temporada
     return  Temporada
 
 @router.post("/Crear/")
