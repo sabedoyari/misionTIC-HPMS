@@ -32,7 +32,7 @@ async def obtener_temporada(ciudad: Optional[str] = None):
         if ciudad in db_nacionales.db_temporada:
             Temporada.append(db_nacionales.db_temporada[ciudad]) 
         else:
-            Temporada = {'Mensaje: En la ciudad especificada no contamos con sucursal'}
+            Temporada = {'Mensaje': 'En la ciudad especificada no contamos con sucursal'}
     else:
         Temporada = db_nacionales.db_temporada
     return  Temporada
