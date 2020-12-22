@@ -13,7 +13,7 @@ router = APIRouter(
 class response_mensaje(BaseModel):
     Mensaje: str
 
-@router.get("/", response_model = response_mensaje)
+@router.get("/")
 async def obtener_hoteles(nombre_hotel: Optional[str] = None):
 
     if nombre_hotel:
@@ -93,44 +93,44 @@ async def consultar_sucursales(consulta: consulta_sucursal):
                 if ts_fecha_inicio <= ts_fecha_inicio_hotel:
                     if ts_fecha_fin <= ts_fecha_inicio_hotel:
                         price *= tasa_tipo_temp
-                        return {'Mensaje': f'Para la fecha especificada, recomendable aplicar tarifa de temporada baja.<br>'
-                                           f'Precio de la habitación por noche: {price:.0f}<br><br>'
+                        return {'Mensaje': f'Para la fecha especificada, recomendable aplicar tarifa de temporada baja.\n'
+                                           f'Precio de la habitación por noche: {price:.0f}\n\n'
                                            f'Para {duracion:.0f} días, el precio total de la estadía es: {duracion*price:.0f}'}
                     elif ts_fecha_fin > ts_fecha_inicio_hotel and ts_fecha_fin <= ts_fecha_fin_hotel:
                         duracion_baja = (ts_fecha_inicio_hotel-ts_fecha_inicio)/(3600*24)
                         duracion_alta = (ts_fecha_fin-ts_fecha_inicio_hotel)/(3600*24)
-                        return {'Mensaje': f'Para la fecha especificada, se deben aplicar varias tarifas: <br>'
-                                           f'Precio de la habitación por noche en temporada baja: {price:.0f}<br>'
+                        return {'Mensaje': f'Para la fecha especificada, se deben aplicar varias tarifas: \n'
+                                           f'Precio de la habitación por noche en temporada baja: {price:.0f}\n'
                                            f'Para {duracion_baja:.0f} días en temporada baja, el precio por esos días es: {duracion_baja*price:.0f}'
-                                           f'Precio de la habitación por noche en temporada alta: {1.5*price:.0f}<br>'
-                                           f'Para {duracion_alta:.0f} días en temporada alta, el precio por esos días es: {duracion_alta*1.5*price:.0f}<br><br>'
+                                           f'Precio de la habitación por noche en temporada alta: {1.5*price:.0f}\n'
+                                           f'Para {duracion_alta:.0f} días en temporada alta, el precio por esos días es: {duracion_alta*1.5*price:.0f}\n\n'
                                            f'Precio total de la estadía para {duracion:.0f} días: {(duracion_baja + 1.5*duracion_alta)*price:.0f}'}
                     elif ts_fecha_fin > ts_fecha_inicio_hotel and ts_fecha_fin > ts_fecha_fin_hotel:
                         duracion_baja = (ts_fecha_inicio_hotel-ts_fecha_inicio)/(3600*24) + (ts_fecha_fin-ts_fecha_fin_hotel)/(3600*24) 
                         duracion_alta = (ts_fecha_fin_hotel-ts_fecha_inicio_hotel)/(3600*24)
-                        return {'Mensaje': f'Para la fecha especificada, se deben aplicar varias tarifas: <br>'
-                                           f'Precio de la habitación por noche en temporada baja: {price:.0f}<br>'
+                        return {'Mensaje': f'Para la fecha especificada, se deben aplicar varias tarifas: \n'
+                                           f'Precio de la habitación por noche en temporada baja: {price:.0f}\n'
                                            f'Para {duracion_baja:.0f} días en temporada baja, el precio por esos días es: {duracion_baja*price:.0f}'
-                                           f'Precio de la habitación por noche en temporada alta: {1.5*price:.0f}<br>'
-                                           f'Para {duracion_alta:.0f} días en temporada alta, el precio por esos días es: {duracion_alta*1.5*price:.0f}<br><br>'
+                                           f'Precio de la habitación por noche en temporada alta: {1.5*price:.0f}\n'
+                                           f'Para {duracion_alta:.0f} días en temporada alta, el precio por esos días es: {duracion_alta*1.5*price:.0f}\n\n'
                                            f'Precio total de la estadía para {duracion:.0f} días: {(duracion_baja + 1.5*duracion_alta)*price:.0f}'}
                 elif ts_fecha_inicio > ts_fecha_inicio_hotel and ts_fecha_inicio <= ts_fecha_fin_hotel:
                     if ts_fecha_fin <= ts_fecha_fin_hotel:
-                        return {'Mensaje': f'Para la fecha especificada, recomendable aplicar tarifa de temporada alta.<br>'
-                                           f'Precio de la habitación por noche: {price:.0f}<br><br>'
+                        return {'Mensaje': f'Para la fecha especificada, recomendable aplicar tarifa de temporada alta.\n'
+                                           f'Precio de la habitación por noche: {price:.0f}\n\n'
                                            f'Para {duracion:.0f} días, el precio total de la estadía es: {duracion*price:.0f}'}
                     elif ts_fecha_fin > ts_fecha_fin_hotel:
                         duracion_baja = (ts_fecha_fin-ts_fecha_fin_hotel)/(3600*24)
                         duracion_alta = (ts_fecha_fin_hotel-ts_fecha_inicio)/(3600*24)
-                        return {'Mensaje': f'Para la fecha especificada, se deben aplicar varias tarifas: <br>'
-                                           f'Precio de la habitación por noche en temporada baja: {price:.0f}<br>'
+                        return {'Mensaje': f'Para la fecha especificada, se deben aplicar varias tarifas: \n'
+                                           f'Precio de la habitación por noche en temporada baja: {price:.0f}\n'
                                            f'Para {duracion_baja:.0f} días en temporada baja, el precio por esos días es: {duracion_baja*price:.0f}'
-                                           f'Precio de la habitación por noche en temporada alta: {1.5*price:.0f}<br>'
-                                           f'Para {duracion_alta:.0f} días en temporada alta, el precio por esos días es: {duracion_alta*1.5*price:.0f}<br><br>'
+                                           f'Precio de la habitación por noche en temporada alta: {1.5*price:.0f}\n'
+                                           f'Para {duracion_alta:.0f} días en temporada alta, el precio por esos días es: {duracion_alta*1.5*price:.0f}\n\n'
                                            f'Precio total de la estadía para {duracion:.0f} días: {(duracion_baja + 1.5*duracion_alta)*price:.0f}'}
                 elif ts_fecha_inicio > ts_fecha_fin_hotel:
-                    return {'Mensaje': f'Para la fecha especificada, recomendable aplicar tarifa de temporada baja.<br>'
-                                       f'Precio de la habitación por noche: {price}<br><br>'
+                    return {'Mensaje': f'Para la fecha especificada, recomendable aplicar tarifa de temporada baja.\n'
+                                       f'Precio de la habitación por noche: {price}\n\n'
                                        f'Para {duracion:.0f} días, el precio total de la estadía es: {duracion*price:.0f}'}                                          
             else:
                 raise HTTPException(status_code = 400,
