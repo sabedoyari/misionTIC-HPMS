@@ -32,7 +32,7 @@ async def crear_hotel(hotel: db_hoteles.hotel):
 
     if hotel.nombre_hotel in db_hoteles.db_hoteles:
         raise HTTPException(status_code = 400,
-                            detail = "El hotel ya está creado")
+                            Mensaje ="El hotel ya está creado")
     else:
         db_hoteles.db_hoteles[hotel.nombre_hotel] = hotel
         return {'Mensaje': f'Se ha creado correctamente el hotel {hotel.nombre_hotel}'}
@@ -45,10 +45,10 @@ async def crear_sucursal(sucursal: db_hoteles.sucursal):
     if sucursal.nombre_hotel:
         if not sucursal.nombre_hotel in db_hoteles.db_hoteles.keys():
             raise HTTPException(status_code = 400,
-                            detail = "El hotel no está registrado en nuestro aplicativo. Proceda a crearlo.")
+                            Mensaje = "El hotel no está registrado en nuestro aplicativo. Proceda a crearlo.")
         elif sucursal.ciudad in db_hoteles.db_hoteles[sucursal.nombre_hotel].sucursales:
             raise HTTPException(status_code = 400,
-                            detail = "El hotel ya cuenta con sucursal en esa ciudad.")
+                            Mensaje = "El hotel ya cuenta con sucursal en esa ciudad.")
         else:
             db_hoteles.db_sucursales[sucursal.ciudad] = sucursal
             db_hoteles.db_hoteles[sucursal.nombre_hotel].sucursales.append(sucursal.ciudad)
@@ -56,10 +56,10 @@ async def crear_sucursal(sucursal: db_hoteles.sucursal):
 
             return {'Mensaje': f'Se ha creado una sucursal en la ciudad de {sucursal.ciudad}'
                             f' para el hotel {sucursal.nombre_hotel}. '
-                            f'El precio recomendable por habitación es: {price}'}
+                            f'El precio recomendable por habitación en temporada baja es: {price}'}
     else:
         raise HTTPException(status_code = 400,
-                            detail = "Debe especificar el nombre del hotel al que le añadirá la sucursal")    
+                            Mensaje = "Debe especificar el nombre del hotel al que le añadirá la sucursal")    
 
 class consulta_sucursal(BaseModel):
     nombre_hotel: Optional[str] = None
@@ -134,11 +134,11 @@ async def consultar_sucursales(consulta: consulta_sucursal):
                                        f'Para {duracion:.0f} días, el precio total de la estadía es: {duracion*price:.0f}'}                                          
             else:
                 raise HTTPException(status_code = 400,
-                            detail = "En la ciudad indicada no existen sucursales de ese hotel.")
+                            Mensaje = "En la ciudad indicada no existen sucursales de ese hotel.")
         else:
             raise HTTPException(status_code = 400,
-                            detail = "En la ciudad indicada no hay hoteles registrados en el aplicativo.")
+                            Mensaje = "En la ciudad indicada no hay hoteles registrados en el aplicativo.")
     else:    
         raise HTTPException(status_code = 400,
-                            detail = "Debe especificar todos los parámetros de búsqueda.")
+                            Mensaje = "Debe especificar todos los parámetros de búsqueda.")
 
